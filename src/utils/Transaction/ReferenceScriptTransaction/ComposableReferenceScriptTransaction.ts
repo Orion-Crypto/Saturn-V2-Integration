@@ -3,14 +3,14 @@ import {
     mutateSubmitReferenceScriptV2Transaction,
 } from '@/api/GraphQL/Transaction/ReferenceScript/mutation';
 import { ConnectWalletError, InvalidInputError, InvalidTransactionSignatureError } from '@/types/Classes/saturnError';
-import { SuccessTransaction } from '@/types/Transactions/SuccessTransaction';
 import {
     CreateReferenceScriptV2TransactionInput,
     ReferenceScriptComponent,
-} from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionInput';
-import { CreateReferenceScriptV2TransactionPayload } from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionPayload';
-import { SubmitReferenceScriptV2TransactionInput } from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionInput';
-import { SubmitReferenceScriptV2TransactionPayload } from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionPayload';
+} from '@/types/Transactions/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionInput';
+import { CreateReferenceScriptV2TransactionPayload } from '@/types/Transactions/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionPayload';
+import { SubmitReferenceScriptV2TransactionInput } from '@/types/Transactions/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionInput';
+import { SubmitReferenceScriptV2TransactionPayload } from '@/types/Transactions/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionPayload';
+import { SuccessTransaction } from '@/types/Transactions/SuccessTransaction';
 import { TransactionResult } from '@/types/Transactions/TransactionResult';
 import CardanoWallet from '@/utils/Cardano/wallet';
 import { SignTransaction } from '@/utils/Transaction/GeneralTransactionUtils';

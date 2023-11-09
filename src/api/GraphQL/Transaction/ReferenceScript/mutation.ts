@@ -1,8 +1,8 @@
 import { getGraphQLHeaders, v2GraphQLClient } from '@/api/api';
-import { CreateReferenceScriptV2TransactionInput } from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionInput';
-import { CreateReferenceScriptV2TransactionPayload } from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionPayload';
-import { SubmitReferenceScriptV2TransactionInput } from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionInput';
-import { SubmitReferenceScriptV2TransactionPayload } from '@/types/Transactions/TokenMintBurnUpdateTransaction/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionPayload';
+import { CreateReferenceScriptV2TransactionInput } from '@/types/Transactions/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionInput';
+import { CreateReferenceScriptV2TransactionPayload } from '@/types/Transactions/ReferenceScriptTransaction/CreateReferenceScriptTransaction/CreateReferenceScriptV2TransactionPayload';
+import { SubmitReferenceScriptV2TransactionInput } from '@/types/Transactions/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionInput';
+import { SubmitReferenceScriptV2TransactionPayload } from '@/types/Transactions/ReferenceScriptTransaction/SubmitReferenceScriptTransaction/SubmitReferenceScriptV2TransactionPayload';
 import { gql } from 'graphql-request';
 
 //---------------------------------------------------------------------------------------------------//

@@ -1,6 +1,6 @@
 'use client';
 
-import { Wallets, connect, disconnect } from '@/components/Elements/Buttons/WalletButtons/walletUtils';
+import { Wallets, connect, disconnect } from '@/components/Elements/Buttons/WalletButton/walletUtils';
 import { Spinner } from '@/components/Elements/Spinner';
 import { useGetConnectedWallet, useIsConnected } from '@/hooks/Cardano/wallet.hooks';
 import { BASE_NFT_KEY } from '@/hooks/Models/nft.hook';
@@ -73,7 +73,7 @@ const ConnectedWallet = ({
                 <div
                     className={clsx(
                         'flex h-12 w-40 justify-start rounded-lg border border-lightspace-300 bg-space-600 font-bold text-white',
-                        'lg:h-14 lg:w-52',
+                        'lg:h-14 lg:w-52'
                     )}
                 >
                     <div

@@ -1,11 +1,7 @@
 import { getAPIKey, getJWTToken } from '@/api/authentication';
 import { GraphQLClient } from 'graphql-request';
 
-//export const v2GraphQLClient = new GraphQLClient(process.env.NEXT_PUBLIC_V2_GRAPHQL_API_URL as string);
-export const v2GraphQLClient = new GraphQLClient("https://api.preprod.saturnnft.io/graphql/");
-//export const v2GraphQLClient = new GraphQLClient("https://localhost:5001/graphql/");
-//export const v2GraphQLClient = new GraphQLClient("https://api.saturnnft.io/graphql/");
-
+export const v2GraphQLClient = new GraphQLClient('https://api.preprod.saturnnft.io/v2/graphql/');
 
 export const getGraphQLHeaders = async () => {
     const headers: any = {} as HeadersInit;

@@ -33,7 +33,7 @@ Minting NFTs with our API is as simple as implementing the copy / pastable code 
 ![Saturn Integration API Key](/public/images/readme/saturn-api-key.png)
 
 -   After we have our API Key, paste it into the Saturn V2 Integration "Mint NFTs" page, connect your wallet, and press the "Mint NFT" button.
--   This will have us execute 2 transaction, 1 to deploy the minting smart contract on the blockchain and 1 right after to mint the NFT.
+-   This will have us execute 2 transactions, 1 to deploy the minting smart contract on the blockchain and 1 right after to mint the NFT.
 -   **Note**: when you mint your project, you only need to deploy the smart contract once and you can do so in the Saturn app. You do not need to deploy the contract on chain multiple times.
 
 Here is the code for the 2 graphQL mutations required to **Create an NFT Minting Transaction** and to **Submit an NFT Minting Transaction**:
@@ -98,6 +98,8 @@ After minting an NFT, now we want to upgrade the NFT. Make sure to check the con
 Input the API Key as well as the NFT Id, click "Upgrade NFT" and you will be asked to sign an upgrade transaction! Congrats we have minted and upgraded an NFT!
 
 The graphQL mutations that allow for minting the NFTs are the same for updating the NFTs to allow for composable transactions. This code is copy and pastable from the integration library so you can customize any type of minting logic you like.
+
+You can even create complex gamification and crafting systems by combing Token Project and NFT Project transactions together with the APIs!
 
 ## API Documentation
 

@@ -120,6 +120,8 @@ const deployContract = async (plutusScript: any) => {
 const mintNFT = async (nft: any) => {
     const nftIds = [nft?.id];
     const result = await NFTMintTransaction(nftIds);
+
+    console.info('Minted NFTs with Ids: ', nftIds);
     return result;
 };
 //---------------------------------------------------------------------------//

@@ -3,6 +3,7 @@
 import { mutateAddNFT, mutateUpdateNFT } from '@/api/GraphQL/NFT/mutation';
 import { mutateAddNFTProject } from '@/api/GraphQL/NFTProject/mutation';
 import { setAPIKey } from '@/api/authentication';
+import { APIKeyInput } from '@/components/Elements/Inputs/APIKeyInput';
 import { Spinner } from '@/components/Elements/Spinner';
 import { useIsConnected } from '@/hooks/Cardano/wallet.hooks';
 import { AddNFTInput } from '@/types/Models/NFT/GraphQL/AddNFT/AddNFTInput';
@@ -19,16 +20,7 @@ const NFTProjectPage = () => {
     return (
         <>
             <div className="flex h-120 w-full flex-col items-center justify-center gap-12">
-                <div className="flex flex-col gap-2">
-                    <Link href={'https://docs.saturnnft.io/docs/api-documentation'} target="_blank" className="text-white hover:text-blue-400">
-                        <label className="cursor-pointer text-xl font-bold ">API Key</label>
-                    </Link>
-                    <input
-                        id="api-key"
-                        name="api-key"
-                        className="flex w-120 rounded-xl bg-lightspace-300 p-4 font-bold text-white focus:border-0 focus:ring-4 focus:ring-lightspace-100"
-                    />
-                </div>
+                <APIKeyInput />
                 <div>
                     <div
                         onClick={async () => {

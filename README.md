@@ -1,6 +1,6 @@
 Welcome to the Saturn V2 Integration Library!
 
-![Saturn Integration Home](/images/readme/saturn-integration-home.png)
+![Saturn Integration Home](/public/images/readme/saturn-integration-home.png)
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ Minting NFTs with our API is as simple as implementing the copy / pastable code 
 
 -   Click on the "Mint NFTs" button in the Navbar.
 
-![Saturn Integration Home](/images/readme/saturn-integration-mint.png)
+![Saturn Integration Mint](/public/images/readme/saturn-integration-mint.png)
 
 -   We need to get a preprod Saturn API key by following these steps:
 
@@ -30,7 +30,7 @@ Minting NFTs with our API is as simple as implementing the copy / pastable code 
 3. Enter the studio and go to the "Settings Page" which is the gear icon on the left hand sidebar.
 4. Click on the "Add API Key" button. Make sure to save this key as you will not be able to view it again (**Note**: the key in the image is revoked)
 
-![Saturn Integration Home](/img/api-documentation/saturn-api-key.png)
+![Saturn Integration API Key](/public/images/readme/saturn-api-key.png)
 
 -   After we have our API Key, paste it into the Saturn V2 Integration "Mint NFTs" page, connect your wallet, and press the "Mint NFT" button.
 -   This will have us execute 2 transaction, 1 to deploy the minting smart contract on the blockchain and 1 right after to mint the NFT.
@@ -93,7 +93,7 @@ export const mutateSubmitNFTMintBurnUpdateTransaction = async (input: SubmitNFTM
 
 After minting an NFT, now we want to upgrade the NFT. Make sure to check the console for the Saturn NFT Id that we just minted. Take that NFT Id along with the API Key and navigate to the Upgrade NFTs page.
 
-![Saturn Integration Upgrade](/images/readme/saturn-integration-upgrade.png)
+![Saturn Integration Upgrade](/public/images/readme/saturn-integration-upgrade.png)
 
 Input the API Key as well as the NFT Id, click "Upgrade NFT" and you will be asked to sign an upgrade transaction! Congrats we have minted and upgraded an NFT!
 

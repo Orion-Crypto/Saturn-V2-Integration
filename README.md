@@ -6,7 +6,7 @@ Welcome to the Saturn V2 Integration Library!
 
 First, we need to install the [pnpm package manager](https://pnpm.io/).
 
-Next, run the development server:
+Next, install all dependencies and run the development server:
 
 ```bash
 pnpm i
@@ -97,7 +97,13 @@ After minting an NFT, now we want to upgrade the NFT. Make sure to check the con
 
 Input the API Key as well as the NFT Id, click "Upgrade NFT" and you will be asked to sign an upgrade transaction! Congrats we have minted and upgraded an NFT!
 
-The graphQL mutations that allow for minting the NFTs are the same for updating the NFTs to allow for composable transactions. This code is copy and pastable from the integration library so you can customize any type of minting logic you like. You can even create complex gamification and crafting systems by combing Token Project and NFT Project transactions together with the APIs!
+The graphQL mutations that allow for minting the NFTs are the same for updating the NFTs to allow for composable transactions. This code is copy and pastable from the integration library so you can customize any type of minting logic you like.
+
+## API Documentation
+
+You can view the full [GraphQL API](https://api.saturnnft.io/v2/graphql) allowing for a simple developer experience that can be implemented seamlessly into any front ends you build!
+
+![API Documentation](/public/images/readme/api-documentation.png)
 
 ## Discord Server
 

@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Welcome to the Saturn V2 Integration Library!
+
+![Saturn Integration Home](/images/readme/saturn-integration-home.png)
 
 ## Getting Started
 
-First, run the development server:
+First, we need to install the [pnpm package manager](https://pnpm.io/).
+
+Next, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm i
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### API Minting NFTs
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Minting NFTs with our API is as simple as implementing the copy / pastable code in this library. This library has a demo that can be tested as well.
 
-## Learn More
+-   Click on the "Mint NFTs" button in the Navbar.
 
-To learn more about Next.js, take a look at the following resources:
+![Saturn Integration Home](/images/readme/saturn-integration-mint.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   We need to get a preprod Saturn API key by following these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Go to [Preprod Saturn](https://preprod.saturnnft.io)
+2. Connect a preprod wallet (Nami is recommended you can switch to preprod in the settings).
+3. Enter the studio and go to the "Settings Page" which is the gear icon on the left hand sidebar.
+4. Click on the "Add API Key" button. Make sure to save this key as you will not be able to view it again (**Note**: the key in the image is revoked)
 
-## Deploy on Vercel
+![Saturn Integration Home](/img/api-documentation/saturn-api-key.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   After we have our API Key, paste it into the Saturn V2 Integration "Mint NFTs" page, connect your wallet, and press the "Mint NFT" button.
+-   This will have us execute 2 transaction, 1 to deploy the minting smart contract on the blockchain and 1 right after to mint the NFT.
+-   **Note**: when you mint your project, you only need to deploy the smart contract once and you can do so in the Saturn app. You do not need to deploy the contract on chain multiple times.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Here is the code for the 2 graphQL mutations required to **Create an NFT Minting Transaction** and to **Submit an NFT Minting Transaction**:
+
+```
+//---------------------------------------------------------------------------------------------------//
+// Create and Submit NFT Transaction Functions
+//---------------------------------------------------------------------------------------------------//
+export const mutateCreateNFTMintBurnUpdateTransaction = async (input: CreateNFTMintBurnUpdateTransactionInput) => {
+    const parameters = { input: input };
+    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    const response: any = await v2GraphQLClient.request(
+        gql`
+            mutation CreateNFTMintBurnUpdateTransaction($input: CreateNFTMintBurnUpdateTransactionInput!) {
+                createNFTMintBurnUpdateTransaction(input: $input) {
+                    successTransactions {
+                        transactionId
+                        hexTransaction
+                    }
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+    const createNFTMintBurnUpdateTransactionPayload: CreateNFTMintBurnUpdateTransactionPayload =
+        response?.createNFTMintBurnUpdateTransaction || {};
+    return createNFTMintBurnUpdateTransactionPayload;
+};
+
+export const mutateSubmitNFTMintBurnUpdateTransaction = async (input: SubmitNFTMintBurnUpdateTransactionInput) => {
+    const parameters = { input: input };
+    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    const response: any = await v2GraphQLClient.request(
+        gql`
+            mutation SubmitNFTMintBurnUpdateTransaction($input: SubmitNFTMintBurnUpdateTransactionInput!) {
+                submitNFTMintBurnUpdateTransaction(input: $input) {
+                    transactionIds
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+    const submitNFTMintBurnUpdateTransactionPayload: SubmitNFTMintBurnUpdateTransactionPayload =
+        response?.submitNFTMintBurnUpdateTransaction || {};
+    return submitNFTMintBurnUpdateTransactionPayload;
+};
+//---------------------------------------------------------------------------------------------------//
+```
+
+### API Upgrading NFTs
+
+After minting an NFT, now we want to upgrade the NFT. Make sure to check the console for the Saturn NFT Id that we just minted. Take that NFT Id along with the API Key and navigate to the Upgrade NFTs page.
+
+![Saturn Integration Upgrade](/images/readme/saturn-integration-upgrade.png)
+
+Input the API Key as well as the NFT Id, click "Upgrade NFT" and you will be asked to sign an upgrade transaction! Congrats we have minted and upgraded an NFT!
+
+The graphQL mutations that allow for minting the NFTs are the same for updating the NFTs to allow for composable transactions. This code is copy and pastable from the integration library so you can customize any type of minting logic you like. You can even create complex gamification and crafting systems by combing Token Project and NFT Project transactions together with the APIs!
+
+## Discord Server
+
+If you have any further questions, or need support with the [API Documentation](https://api.saturnnft.io/v2/graphql) or this library, we have the [Saturn Discord Server](https://discord.gg/NvVNfQmPjp) to ask any questions that you have!

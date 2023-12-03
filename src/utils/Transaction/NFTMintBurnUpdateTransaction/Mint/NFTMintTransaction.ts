@@ -28,9 +28,5 @@ export const NFTMintTransaction = async (nftIds: string[], royaltyNFTProjectId: 
         royaltyMintComponents: royaltyMintComponents,
     });
     TransactionInfoTab(result);
-
-    // if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
-    //     setNFTMintBurnUpdateTransaction({ txHashes: result.transactionIds });
-    // }
     return result;
 };

@@ -15,7 +15,7 @@ export const mutateAddNFT = async (input: AddNFTInput) => {
     v2GraphQLClient.setHeaders(await getGraphQLHeaders());
     const response: any = await v2GraphQLClient.request(
         gql`
-            mutation AddNFT($input: AddNFTsInput!) {
+            mutation AddNFT($input: AddNFTInput!) {
                 addNFT(input: $input) {
                     nfts {
                         id
@@ -50,6 +50,7 @@ export const mutateUpdateNFT = async (input: UpdateNFTInput) => {
         `,
         parameters
     );
+
     const updateNFTPayload: UpdateNFTPayload = response?.updateNFT || {};
     return updateNFTPayload;
 };
@@ -59,7 +60,7 @@ export const mutateDeleteNFT = async (input: DeleteNFTInput) => {
     v2GraphQLClient.setHeaders(await getGraphQLHeaders());
     const response: any = await v2GraphQLClient.request(
         gql`
-            mutation DeleteNFT($input: DeleteNFTsInput!) {
+            mutation DeleteNFT($input: DeleteNFTInput!) {
                 deleteNFT(input: $input) {
                     nftProject {
                         id

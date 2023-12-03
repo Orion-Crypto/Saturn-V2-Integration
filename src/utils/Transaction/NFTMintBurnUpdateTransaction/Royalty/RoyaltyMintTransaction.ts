@@ -15,7 +15,6 @@ export const RoyaltyMintTransaction = async (nftProjectId: any) => {
     TransactionInfoTab(result);
 
     if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
-        console.log(result.transactionIds[0]);
         //setNFTMintBurnUpdateTransaction({ txHash: result.transactionIds[0] });
     }
     return result;

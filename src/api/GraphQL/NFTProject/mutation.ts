@@ -17,6 +17,9 @@ export const mutateAddNFTProject = async () => {
                 addNFTProject() {
                     nftProject {
                         id
+                        plutus_script {
+                            id
+                        }
                     }
                     error {
                         message

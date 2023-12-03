@@ -1,15 +1,15 @@
-import { getGraphQLHeaders, v2GraphQLClient } from '@/api/api';
-import { GetDailyRewardsInput } from '@/types/Models/NFT/Data/StakeProject/GetDailyRewards/GetDailyRewardsInput';
-import { GetDailyRewardsPayload } from '@/types/Models/NFT/Data/StakeProject/GetDailyRewards/GetDailyRewardsPayload';
-import { GetPotentialRewardsInput } from '@/types/Models/NFT/Data/StakeProject/GetPotentialRewards/GetPotentialRewardsInput';
-import { GetPotentialRewardsPayload } from '@/types/Models/NFT/Data/StakeProject/GetPotentialRewards/GetPotentialRewardsPayload';
-import { GetRemainingTokensPayload } from '@/types/Models/NFT/Data/StakeProject/GetRemainingTokens/GetRemainingTokensPayload';
-import { GetStakedNFTMainPairsInput } from '@/types/Models/NFT/Data/StakeProject/GetStakedNFTMainPairs/GetStakedNFTMainPairsInput';
-import { GetStakedNFTMainPairsPayload } from '@/types/Models/NFT/Data/StakeProject/GetStakedNFTMainPairs/GetStakedNFTMainPairsPayload';
-import { GetStakedNFTPartnerPairsInput } from '@/types/Models/NFT/Data/StakeProject/GetStakedNFTPartnerPairs/GetStakedNFTPartnerPairsInput';
-import { GetStakedNFTPartnerPairsPayload } from '@/types/Models/NFT/Data/StakeProject/GetStakedNFTPartnerPairs/GetStakedNFTPartnerPairsPayload';
-import { GetStakedNFTCountsPayload } from '@/types/Models/NFT/Data/StakeProject/GetStakedNftCounts/GetStakedNftsCountPayload';
-import { GetStakedNFTsPayload } from '@/types/Models/NFT/Data/StakeProject/GetStakedNfts/GetStakedNftsPayload';
+import { getGraphQLHeaders, graphQLClient, v2GraphQLClient } from '@/api/api';
+import { GetDailyRewardsInput } from '@/types/Models/StakeProject/GetDailyRewards/GetDailyRewardsInput';
+import { GetDailyRewardsPayload } from '@/types/Models/StakeProject/GetDailyRewards/GetDailyRewardsPayload';
+import { GetPotentialRewardsInput } from '@/types/Models/StakeProject/GetPotentialRewards/GetPotentialRewardsInput';
+import { GetPotentialRewardsPayload } from '@/types/Models/StakeProject/GetPotentialRewards/GetPotentialRewardsPayload';
+import { GetRemainingTokensPayload } from '@/types/Models/StakeProject/GetRemainingTokens/GetRemainingTokensPayload';
+import { GetStakedNFTMainPairsInput } from '@/types/Models/StakeProject/GetStakedNFTMainPairs/GetStakedNFTMainPairsInput';
+import { GetStakedNFTMainPairsPayload } from '@/types/Models/StakeProject/GetStakedNFTMainPairs/GetStakedNFTMainPairsPayload';
+import { GetStakedNFTPartnerPairsInput } from '@/types/Models/StakeProject/GetStakedNFTPartnerPairs/GetStakedNFTPartnerPairsInput';
+import { GetStakedNFTPartnerPairsPayload } from '@/types/Models/StakeProject/GetStakedNFTPartnerPairs/GetStakedNFTPartnerPairsPayload';
+import { GetStakedNFTCountsPayload } from '@/types/Models/StakeProject/GetStakedNftCounts/GetStakedNftsCountPayload';
+import { GetStakedNFTsPayload } from '@/types/Models/StakeProject/GetStakedNfts/GetStakedNftsPayload';
 import { gql } from 'graphql-request';
 
 export const graphQLStakeProject = `
@@ -77,9 +77,9 @@ export const graphQLStakeProject = `
 export const queryStakeProject = async (id: string) => {
     if (!id) return null;
 
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const input = { id: id };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query StakeProject($id: String!) {
                 stakeProject(id: $id) {
@@ -99,9 +99,9 @@ export const queryStakeProject = async (id: string) => {
 // Token Get Amount Functions
 //---------------------------------------------------------------------------------------------------//
 export const queryPotentialRewards = async (input: GetPotentialRewardsInput) => {
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const parameters = { input: input };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query PotentialRewards($input: GetPotentialRewardsInput!) {
                 potentialRewards(input: $input) {
@@ -127,9 +127,9 @@ export const queryPotentialRewards = async (input: GetPotentialRewardsInput) => 
 };
 
 export const queryDailyRewards = async (input: GetDailyRewardsInput) => {
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const parameters = { input: input };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query DailyRewards($input: GetDailyRewardsInput!) {
                 dailyRewards(input: $input) {
@@ -155,9 +155,9 @@ export const queryDailyRewards = async (input: GetDailyRewardsInput) => {
 
 export const queryRemainingTokens = async (id: string) => {
     if (!id) return null;
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const input = { id: id };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query RemainingTokens($id: String!) {
                 remainingTokens(id: $id) {
@@ -178,9 +178,9 @@ export const queryRemainingTokens = async (id: string) => {
 
 export const queryStakedNfts = async (id: string) => {
     if (!id) return null;
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const input = { id: id };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query StakedNfts($id: String!) {
                 stakedNfts(id: $id) {
@@ -206,9 +206,9 @@ export const queryStakedNfts = async (id: string) => {
 
 export const queryStakedNftCounts = async (id: string) => {
     if (!id) return null;
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const input = { id: id };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query StakedNftCounts($id: String!) {
                 stakedNftCounts(id: $id) {
@@ -231,9 +231,9 @@ export const queryStakedNftCounts = async (id: string) => {
 };
 
 export const queryStakedNftMainPairs = async (input: GetStakedNFTMainPairsInput) => {
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const parameters = { input: input };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query StakedNftMainPairs($input: GetStakedNFTMainPairsInput!) {
                 stakedNftMainPairs(input: $input) {
@@ -259,9 +259,9 @@ export const queryStakedNftMainPairs = async (input: GetStakedNFTMainPairsInput)
 };
 
 export const queryStakedNftPartnerPairs = async (input: GetStakedNFTPartnerPairsInput) => {
-    v2GraphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(await getGraphQLHeaders());
     const parameters = { input: input };
-    const response: any = await v2GraphQLClient.request(
+    const response: any = await graphQLClient.request(
         gql`
             query StakedNftPartnerPairs($input: GetStakedNFTPartnerPairsInput!) {
                 stakedNftPartnerPairs(input: $input) {

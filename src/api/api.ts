@@ -1,6 +1,7 @@
 import { getAPIKey, getJWTToken } from '@/api/authentication';
 import { GraphQLClient } from 'graphql-request';
 
+export const graphQLClient = new GraphQLClient('https://api.preprod.saturnnft.io/graphql/');
 export const v2GraphQLClient = new GraphQLClient('https://api.preprod.saturnnft.io/v2/graphql/');
 
 export const getGraphQLHeaders = async () => {

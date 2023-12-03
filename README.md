@@ -25,7 +25,7 @@ Minting NFTs with our API is as simple as implementing the copy / pastable code 
 
 -   We need to get a preprod Saturn API key by following these steps:
 
-1. Go to <a href="https://preprod.saturnnft.io" target="_blank">Preprod Saturn</a>
+1. Go to [Preprod Saturn](https://preprod.saturnnft.io)
 2. Connect a preprod wallet (Nami is recommended you can switch to preprod in the settings).
 3. Enter the studio and go to the "Settings Page" which is the gear icon on the left hand sidebar.
 4. Click on the "Add API Key" button. Make sure to save this key as you will not be able to view it again (**Note**: the key in the image is revoked)

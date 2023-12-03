@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 export const Navbar = () => {
     const pathname = usePathname();
     const isNFTProjectPage = pathname === '/nft-project';
+    const isUpgradeProjectPage = pathname === '/upgrade-project';
 
     return (
         <>
@@ -17,7 +18,8 @@ export const Navbar = () => {
                     <LogoButton />
                 </div>
                 <div className="grow"></div>
-                <NavbarButton name="NFT Project" link="/nft-project" isActive={isNFTProjectPage} />
+                <NavbarButton name="Mint NFTs" link="/nft-project" isActive={isNFTProjectPage} />
+                <NavbarButton name="Upgrade NFTs" link="/upgrade-project" isActive={isUpgradeProjectPage} />
                 <div className="grow"></div>
                 <div>
                     <WalletButton />

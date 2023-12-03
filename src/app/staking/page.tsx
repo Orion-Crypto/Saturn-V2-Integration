@@ -152,33 +152,30 @@ export const StakeSettings = () => {
                         <div className="mb-6 mt-3 flex w-full flex-col justify-start gap-8">
                             <button
                                 onClick={stakeNFTs}
-                                disabled={isStakingNFTs} // Disable button when isStakingNFTs is true
+                                //disabled={isStakingNFTs} // Disable button when isStakingNFTs is true
+                                disabled={true}
                                 className={clsx(
-                                    'flex h-14 w-56 items-center justify-center rounded-lg bg-yellow-500 text-2xl font-bold drop-shadow-black-sharp',
-                                    'hover:bg-yellow-400',
-                                    'active:bg-yellow-300'
+                                    'flex h-14 w-56 items-center justify-center rounded-lg bg-gray-500 text-2xl font-bold drop-shadow-black-sharp'
                                 )}
                             >
                                 <div className="drop-shadow-black-sharp">{'Stake NFT'}</div>
                             </button>
                             <button
                                 onClick={unstakeNFTs}
-                                disabled={isUnstakingNFTs} // Disable button when isUnstakingNFTs is true
+                                //disabled={isUnstakingNFTs} // Disable button when isUnstakingNFTs is true
+                                disabled={true}
                                 className={clsx(
-                                    'flex h-14 w-56 items-center justify-center rounded-lg bg-yellow-500 text-2xl font-bold drop-shadow-black-sharp',
-                                    'hover:bg-yellow-400',
-                                    'active:bg-yellow-300'
+                                    'flex h-14 w-56 items-center justify-center rounded-lg bg-gray-500 text-2xl font-bold drop-shadow-black-sharp'
                                 )}
                             >
                                 <div className="drop-shadow-black-sharp">{'Unstake NFT'}</div>
                             </button>
                             <button
                                 onClick={claimNFTs}
-                                disabled={isClaimingNFTs} // Disable button when isClaimingNFTs is true
+                                //disabled={isClaimingNFTs} // Disable button when isClaimingNFTs is true
+                                disabled={true}
                                 className={clsx(
-                                    'flex h-14 w-56 items-center justify-center rounded-lg bg-yellow-500 text-2xl font-bold drop-shadow-black-sharp',
-                                    'hover:bg-yellow-400',
-                                    'active:bg-yellow-300'
+                                    'flex h-14 w-56 items-center justify-center rounded-lg bg-gray-500 text-2xl font-bold drop-shadow-black-sharp'
                                 )}
                             >
                                 <div className="drop-shadow-black-sharp">{'Claim NFT'}</div>

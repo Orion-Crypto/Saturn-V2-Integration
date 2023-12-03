@@ -1,27 +1,46 @@
+'use client';
+
 import { mutateAddNFT, mutateUpdateNFT } from '@/api/GraphQL/NFT/mutation';
 import { mutateAddNFTProject } from '@/api/GraphQL/NFTProject/mutation';
+import { setAPIKey } from '@/api/authentication';
+import { Spinner } from '@/components/Elements/Spinner';
+import { useIsConnected } from '@/hooks/Cardano/wallet.hooks';
 import { AddNFTInput } from '@/types/Models/NFT/GraphQL/AddNFT/AddNFTInput';
 import { UpdateNFTInput } from '@/types/Models/NFT/GraphQL/UpdateNFT/UpdateNFTInput';
 import { NFTMintTransaction } from '@/utils/Transaction/NFTMintBurnUpdateTransaction/Mint/NFTMintTransaction';
 import clsx from 'clsx';
-import { Update } from 'lucid-cardano/types/src/core/libs/cardano_multiplatform_lib/cardano_multiplatform_lib.generated';
+import { useState } from 'react';
 
 const NFTProjectPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const { data: isConnected } = useIsConnected();
+
     return (
         <>
             <div className="flex h-120 w-full flex-col items-center justify-center gap-12">
                 <div className="flex flex-col gap-2">
                     <label className="text-xl font-bold text-white">API Key</label>
-                    <input id="api-key" name="api-key" className="w-120 rounded-xl border-0 bg-lightspace-300 p-4 text-white ring-0" />
+                    <input
+                        id="api-key"
+                        name="api-key"
+                        className="flex w-120 rounded-xl bg-lightspace-300 p-4 font-bold text-white focus:border-0 focus:ring-4 focus:ring-lightspace-100"
+                    />
                 </div>
                 <div>
                     <div
+                        onClick={async () => {
+                            if (!isConnected) return;
+
+                            setIsLoading(true);
+                            await createAndMintNFT();
+                            setIsLoading(false);
+                        }}
                         className={clsx(
-                            'flex cursor-pointer rounded-xl px-24 py-6 text-3xl font-bold text-white drop-shadow-black-sharp transition-all duration-100',
-                            'bg-blue-600 hover:bg-blue-500 active:bg-blue-400'
+                            'flex rounded-xl px-24 py-6 text-3xl font-bold text-white drop-shadow-black-sharp transition-all duration-100',
+                            isConnected ? 'cursor-pointer bg-blue-600 hover:bg-blue-500 active:bg-blue-400' : 'bg-gray-600'
                         )}
                     >
-                        Mint NFT
+                        {isLoading ? <Spinner /> : 'Mint NFT'}
                     </div>
                 </div>
             </div>
@@ -35,6 +54,9 @@ export default NFTProjectPage;
 // Full Create And Mint
 //---------------------------------------------------------------------------//
 const createAndMintNFT = async () => {
+    const apiKey = (document.getElementById(`api-key`) as HTMLInputElement)?.value;
+    setAPIKey(apiKey);
+
     const nftProject = await createNFTProject();
     const nft = await createNFT(nftProject);
     const result = await mintNFT(nft);

@@ -12,14 +12,12 @@ export const Navbar = () => {
     return (
         <>
             <div className="h-20"></div>
-            <div className="drop-shadow-black-sharp fixed top-0 flex h-20 w-full items-center gap-16 bg-space-900 px-4 text-white">
+            <div className="fixed top-0 flex h-20 w-full items-center gap-16 bg-space-900 px-4 text-white drop-shadow-black-sharp">
                 <div>
                     <LogoButton />
                 </div>
                 <div className="grow"></div>
                 <NavbarButton name="NFT Project" link="/nft-project" isActive={isNFTProjectPage} />
-                <NavbarButton name="NFT Project" link="/" />
-                <NavbarButton name="NFT Project" link="/" />
                 <div className="grow"></div>
                 <div>
                     <WalletButton />

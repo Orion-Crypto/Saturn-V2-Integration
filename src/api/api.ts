@@ -25,3 +25,14 @@ export const getGraphQLHeaders = async () => {
         return headers;
     }
 };
+
+export const fetchPolicyIdAssetImages = async (policyId: string, assets: string[]) => {
+    const response = await fetch(`localhost:3000/assets/${policyId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ assets: assets }),
+    });
+    return response.json();
+};

@@ -9,6 +9,7 @@ import { AddNFTInput } from '@/types/Models/NFT/GraphQL/AddNFT/AddNFTInput';
 import { UpdateNFTInput } from '@/types/Models/NFT/GraphQL/UpdateNFT/UpdateNFTInput';
 import { NFTMintTransaction } from '@/utils/Transaction/NFTMintBurnUpdateTransaction/Mint/NFTMintTransaction';
 import clsx from 'clsx';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const NFTProjectPage = () => {
@@ -19,7 +20,9 @@ const NFTProjectPage = () => {
         <>
             <div className="flex h-120 w-full flex-col items-center justify-center gap-12">
                 <div className="flex flex-col gap-2">
-                    <label className="text-xl font-bold text-white">API Key</label>
+                    <Link href={'https://docs.saturnnft.io/docs/api-documentation'} target="_blank" className="text-white hover:text-blue-400">
+                        <label className="cursor-pointer text-xl font-bold ">API Key</label>
+                    </Link>
                     <input
                         id="api-key"
                         name="api-key"

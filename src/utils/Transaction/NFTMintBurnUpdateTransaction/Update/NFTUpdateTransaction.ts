@@ -25,10 +25,9 @@ export const NFTUpdateTransaction = async (nftIds: string[]) => {
     const result = await ComposableNFTMintBurnUpdateTransaction({ nftUpdateComponents: nftUpdateComponents });
     TransactionInfoTab(result);
 
-    if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
-        console.log(result.transactionIds[0]);
-        //setNFTMintBurnUpdateTransaction({ txHash: result.transactionIds[0] });
-    }
+    // if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
+    //     setNFTMintBurnUpdateTransaction({ txHash: result.transactionIds[0] });
+    // }
     return result;
 };
 

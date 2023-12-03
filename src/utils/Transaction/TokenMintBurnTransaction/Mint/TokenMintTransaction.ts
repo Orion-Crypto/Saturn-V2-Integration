@@ -20,9 +20,8 @@ export const TokenMintTransaction = async (tokenIds: string[], amounts: number[]
     const result = await ComposableTokenMintBurnUpdateTransaction({ tokenMintComponents: tokenMintComponents });
     TransactionInfoTab(result);
 
-    if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
-        console.log(result.transactionIds[0]);
-        //setTokenMintBurnTransaction({ txHash: result.transactionIds[0] });
-    }
+    // if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
+    //     setTokenMintBurnTransaction({ txHash: result.transactionIds[0] });
+    // }
     return result;
 };

@@ -13,8 +13,8 @@ export const RandomNFTMintTransaction = async (
     const result = await ComposableRandomNFTMintTransaction({ nftProjectId, count, paymentTokens, passwords, gReCaptchaToken });
     TransactionInfoTab(result);
 
-    if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
-        console.log(result.transactionIds);
-    }
+    // if (result.transactionIds && result.transactionIds.length > 0 && !result.error) {
+    //
+    // }
     return result;
 };

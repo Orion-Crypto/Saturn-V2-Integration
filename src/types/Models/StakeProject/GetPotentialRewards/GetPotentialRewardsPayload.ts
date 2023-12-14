@@ -10,5 +10,6 @@ export interface NFTStakeRewardPayload {
     policyId?: string;
     assetName?: string;
     rewards?: number;
+    daysStaked?: number;
     spend_utxo_status?: string;
 }

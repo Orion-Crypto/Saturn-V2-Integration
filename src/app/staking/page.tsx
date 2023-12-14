@@ -7,7 +7,6 @@ import {
     queryStakedNftCounts,
     queryStakedNftMainPairs,
     queryStakedNftPartnerPairs,
-    queryStakedNfts,
 } from '@/api/GraphQL/StakeProject/query';
 import { mutateCreateStakeTransaction, mutateSubmitStakeTransaction } from '@/api/GraphQL/Transaction/Stake/mutation';
 import { InvalidTransactionSignatureError } from '@/types/Classes/saturnError';
@@ -73,12 +72,6 @@ export const StakeSettings = () => {
         setIsGettingRemainingTokens(true);
         await getRemainingTokensFunction(event, stakeProject);
         setIsGettingRemainingTokens(false);
-    };
-
-    const getStakedNFTs = async (event: any) => {
-        setIsGettingStakedNfts(true);
-        await getStakedNFTsFunction(event, stakeProject);
-        setIsGettingStakedNfts(false);
     };
 
     const getStakedNFTCounts = async (event: any) => {
@@ -201,17 +194,6 @@ export const StakeSettings = () => {
                                 )}
                             >
                                 <div className="drop-shadow-black-sharp">{'Get Remaining Tokens'}</div>
-                            </button>
-                            <button
-                                onClick={getStakedNFTs}
-                                disabled={isGettingStakedNfts} // Disable button when isGettingStakedNfts is true
-                                className={clsx(
-                                    'flex h-14 w-56 items-center justify-center rounded-lg bg-yellow-500 text-2xl font-bold drop-shadow-black-sharp',
-                                    'hover:bg-yellow-400',
-                                    'active:bg-yellow-300'
-                                )}
-                            >
-                                <div className="drop-shadow-black-sharp">{'Get Staked NFTs'}</div>
                             </button>
                             <button
                                 onClick={getStakedNFTCounts}
@@ -526,17 +508,6 @@ const getRemainingTokensFunction = async (event: any, stakeProject: any) => {
         const stakeProjectId = 'd51282e9-dacf-434d-b069-5c972e9d672d';
 
         const result = await queryRemainingTokens(stakeProjectId);
-        return result;
-    } catch (error: any) {
-        console.log(error);
-    }
-};
-
-const getStakedNFTsFunction = async (event: any, stakeProject: any) => {
-    event.preventDefault();
-    try {
-        const stakeProjectId = 'd51282e9-dacf-434d-b069-5c972e9d672d';
-        const result = await queryStakedNfts(stakeProjectId);
         return result;
     } catch (error: any) {
         console.log(error);

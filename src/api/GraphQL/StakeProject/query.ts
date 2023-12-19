@@ -9,7 +9,6 @@ import { GetStakedNFTMainPairsPayload } from '@/types/Models/StakeProject/GetSta
 import { GetStakedNFTPartnerPairsInput } from '@/types/Models/StakeProject/GetStakedNFTPartnerPairs/GetStakedNFTPartnerPairsInput';
 import { GetStakedNFTPartnerPairsPayload } from '@/types/Models/StakeProject/GetStakedNFTPartnerPairs/GetStakedNFTPartnerPairsPayload';
 import { GetStakedNFTCountsPayload } from '@/types/Models/StakeProject/GetStakedNftCounts/GetStakedNftsCountPayload';
-import { GetStakedNFTsPayload } from '@/types/Models/StakeProject/GetStakedNfts/GetStakedNftsPayload';
 import { gql } from 'graphql-request';
 
 export const graphQLStakeProject = `
@@ -110,6 +109,7 @@ export const queryPotentialRewards = async (input: GetPotentialRewardsInput) => 
                         policyId
                         assetName
                         rewards
+                        daysStaked
                         spend_utxo_status
                     }
                     error {
@@ -174,34 +174,6 @@ export const queryRemainingTokens = async (id: string) => {
     const getRemainingTokensPayload: GetRemainingTokensPayload = response?.remainingTokens;
     const getRemainingTokens: any = getRemainingTokensPayload?.tokens || {};
     return getRemainingTokens;
-};
-
-export const queryStakedNfts = async (id: string) => {
-    if (!id) return null;
-    graphQLClient.setHeaders(await getGraphQLHeaders());
-    const input = { id: id };
-    const response: any = await graphQLClient.request(
-        gql`
-            query StakedNfts($id: String!) {
-                stakedNfts(id: $id) {
-                    nfts {
-                        policyId
-                        assetName
-                        rewardsAccumulated
-                        daysStaked
-                    }
-                    error {
-                        message
-                    }
-                }
-            }
-        `,
-        input
-    );
-
-    const getStakedNftsPayload: GetStakedNFTsPayload = response?.stakedNfts;
-    const getStakedNfts: any = getStakedNftsPayload?.nfts || {};
-    return getStakedNfts;
 };
 
 export const queryStakedNftCounts = async (id: string) => {

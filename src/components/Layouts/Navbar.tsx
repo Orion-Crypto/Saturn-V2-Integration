@@ -10,6 +10,7 @@ export const Navbar = () => {
     const isNFTProjectPage = pathname === '/nft-project';
     const isUpgradeProjectPage = pathname === '/upgrade-project';
     const isCustodyWalletPage = pathname === '/custody-wallet';
+    const isStakingPage = pathname === '/staking';
 
     return (
         <>
@@ -22,6 +23,7 @@ export const Navbar = () => {
                 <NavbarButton name="Mint NFTs" link="/nft-project" isActive={isNFTProjectPage} />
                 <NavbarButton name="Upgrade NFTs" link="/upgrade-project" isActive={isUpgradeProjectPage} />
                 <NavbarButton name="Custody Wallets" link="/custody-wallet" isActive={isCustodyWalletPage} />
+                <NavbarButton name="Staking" link="/staking" isActive={isStakingPage} />
                 <div className="grow"></div>
                 <div>
                     <WalletButton />

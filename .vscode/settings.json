@@ -86,9 +86,9 @@
     "editor.guides.bracketPairsHorizontal": false,
     "editor.guides.bracketPairs": "active",
     "editor.codeActionsOnSave": {
-        "source.sortImports": true,
-        "source.fixAll.eslint": true,
-        "source.fixAll.stylelint": true
+        "source.sortImports": "explicit",
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
     },
     "editor.cursorBlinking": "blink",
     "editor.cursorStyle": "line",
@@ -156,5 +156,10 @@
     "workbench.tree.indent": 24,
     "explorer.confirmDelete": false,
     "prettier.tabWidth": 4,
-    "workbench.editor.empty.hint": "hidden"
+    "workbench.editor.empty.hint": "hidden",
+    "[terraform][terraform-vars]": {
+        "editor.codeActionsOnSave": {
+            "source.formatAll.terraform": "explicit"
+        }
+    }
 }

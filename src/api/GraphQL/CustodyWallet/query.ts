@@ -58,7 +58,7 @@ export const queryCustodialWallets = async (parameters?: GraphQLParameters) => {
             }
         `
     );
-    const nfts: any = response?.nFTs || {};
-    return nfts;
+    const custodialWallets: any = response?.custodialWallets || {};
+    return custodialWallets;
 };
 //---------------------------------------------------------------------------------------------------//

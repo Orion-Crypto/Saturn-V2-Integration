@@ -1,8 +1,12 @@
 import { getGraphQLHeaders, graphQLClient, v2GraphQLClient } from '@/api/api';
 import { GetDailyRewardsInput } from '@/types/Models/StakeProject/GetDailyRewards/GetDailyRewardsInput';
 import { GetDailyRewardsPayload } from '@/types/Models/StakeProject/GetDailyRewards/GetDailyRewardsPayload';
+import { GetDailyRewardsWithPendingInput } from '@/types/Models/StakeProject/GetDailyRewardsWithPending/GetDailyRewardsWithPendingInput';
+import { GetDailyRewardsWithPendingPayload } from '@/types/Models/StakeProject/GetDailyRewardsWithPending/GetDailyRewardsWithPendingPayload';
 import { GetPotentialRewardsInput } from '@/types/Models/StakeProject/GetPotentialRewards/GetPotentialRewardsInput';
 import { GetPotentialRewardsPayload } from '@/types/Models/StakeProject/GetPotentialRewards/GetPotentialRewardsPayload';
+import { GetPotentialRewardsWithPendingInput } from '@/types/Models/StakeProject/GetPotentialRewardsWithPending/GetPotentialRewardsWithPendingInput';
+import { GetPotentialRewardsWithPendingPayload } from '@/types/Models/StakeProject/GetPotentialRewardsWithPending/GetPotentialRewardsWithPendingPayload';
 import { GetRemainingTokensPayload } from '@/types/Models/StakeProject/GetRemainingTokens/GetRemainingTokensPayload';
 import { GetStakedNFTMainPairsInput } from '@/types/Models/StakeProject/GetStakedNFTMainPairs/GetStakedNFTMainPairsInput';
 import { GetStakedNFTMainPairsPayload } from '@/types/Models/StakeProject/GetStakedNFTMainPairs/GetStakedNFTMainPairsPayload';
@@ -126,6 +130,36 @@ export const queryPotentialRewards = async (input: GetPotentialRewardsInput) => 
     return getPotentialRewards;
 };
 
+export const queryPotentialRewardsWithPending = async (input: GetPotentialRewardsWithPendingInput) => {
+    graphQLClient.setHeaders(await getGraphQLHeaders());
+    const parameters = { input: input };
+    const response: any = await graphQLClient.request(
+        gql`
+            query PotentialRewardsWithPending($input: GetPotentialRewardsWithPendingInput!) {
+                potentialRewardsWithPending(input: $input) {
+                    nftStakeRewardsWithPendingPayloads {
+                        stakeProjectId
+                        policyId
+                        assetName
+                        rewards
+                        daysStaked
+                        active_utxo_status
+                        spend_utxo_status
+                    }
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+
+    const getPotentialRewardsWithPendingPayload: GetPotentialRewardsWithPendingPayload = response?.potentialRewardsWithPending;
+    const getPotentialRewardsWithPending: any = getPotentialRewardsWithPendingPayload?.nftStakeRewardsWithPendingPayloads || {};
+    return getPotentialRewardsWithPending;
+};
+
 export const queryDailyRewards = async (input: GetDailyRewardsInput) => {
     graphQLClient.setHeaders(await getGraphQLHeaders());
     const parameters = { input: input };
@@ -148,9 +182,38 @@ export const queryDailyRewards = async (input: GetDailyRewardsInput) => {
         parameters
     );
 
-    const getDailyRewardsPayload: GetDailyRewardsPayload = response?.potentialRewards;
+    const getDailyRewardsPayload: GetDailyRewardsPayload = response?.dailyRewards;
     const getDailyRewards: any = getDailyRewardsPayload?.nftDailyStakeRewardsPayloads || {};
     return getDailyRewards;
+};
+
+export const queryDailyRewardsWithPending = async (input: GetDailyRewardsWithPendingInput) => {
+    graphQLClient.setHeaders(await getGraphQLHeaders());
+    const parameters = { input: input };
+    const response: any = await graphQLClient.request(
+        gql`
+            query DailyRewardsWithPending($input: GetDailyRewardsWithPendingInput!) {
+                dailyRewardsWithPending(input: $input) {
+                    nftDailyStakeRewardsWithPendingPayloads {
+                        stakeProjectId
+                        policyId
+                        assetName
+                        rewards
+                        active_utxo_status
+                        spend_utxo_status
+                    }
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+
+    const getDailyRewardsWithPendingPayload: GetDailyRewardsWithPendingPayload = response?.dailyRewardsWithPending;
+    const getDailyRewardsWithPending: any = getDailyRewardsWithPendingPayload?.nftDailyStakeRewardsWithPendingPayloads || {};
+    return getDailyRewardsWithPending;
 };
 
 export const queryRemainingTokens = async (id: string) => {

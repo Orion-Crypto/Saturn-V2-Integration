@@ -2,7 +2,9 @@
 
 import {
     queryDailyRewards,
+    queryDailyRewardsWithPending,
     queryPotentialRewards,
+    queryPotentialRewardsWithPending,
     queryRemainingTokens,
     queryStakedNftCounts,
     queryStakedNftMainPairs,
@@ -11,7 +13,9 @@ import {
 import { mutateCreateStakeTransaction, mutateSubmitStakeTransaction } from '@/api/GraphQL/Transaction/Stake/mutation';
 import { InvalidTransactionSignatureError } from '@/types/Classes/saturnError';
 import { GetDailyRewardsInput, NFTDailyStakeRewardInput } from '@/types/Models/StakeProject/GetDailyRewards/GetDailyRewardsInput';
+import { GetDailyRewardsWithPendingInput } from '@/types/Models/StakeProject/GetDailyRewardsWithPending/GetDailyRewardsWithPendingInput';
 import { GetPotentialRewardsInput, NFTStakeRewardInput } from '@/types/Models/StakeProject/GetPotentialRewards/GetPotentialRewardsInput';
+import { GetPotentialRewardsWithPendingInput } from '@/types/Models/StakeProject/GetPotentialRewardsWithPending/GetPotentialRewardsWithPendingInput';
 import { GetStakedNFTMainPairsInput, StakedNFTPairInput } from '@/types/Models/StakeProject/GetStakedNFTMainPairs/GetStakedNFTMainPairsInput';
 import { GetStakedNFTPartnerPairsInput } from '@/types/Models/StakeProject/GetStakedNFTPartnerPairs/GetStakedNFTPartnerPairsInput';
 import {
@@ -502,6 +506,39 @@ const getPotentialRewardsFunction = async (event: any, stakeProject: any) => {
     }
 };
 
+//This API call works the same as the one above, but it also returns the pending stake Utxos, aka the Utxos that are currently being staked
+const getPotentialRewardsWithPendingFunction = async (event: any, stakeProject: any) => {
+    event.preventDefault();
+    try {
+        const stakeProjectId = 'd51282e9-dacf-434d-b069-5c972e9d672d';
+
+        const stakeNft1: NFTStakeRewardInput = {
+            policyId: '80fe5596d16d7c9e5255e46670e59d8644baf94d2a55ec9b382c4639',
+            assetName: '000de1404e4654202331383530',
+        };
+
+        const stakeNft2: NFTStakeRewardInput = {
+            policyId: '80fe5596d16d7c9e5255e46670e59d8644baf94d2a55ec9b382c4639',
+            assetName: '000de1404e4654202331383330',
+        };
+
+        const stakeNft3: NFTStakeRewardInput = {
+            policyId: '80fe5596d16d7c9e5255e46670e59d8644baf94d2a55ec9b382c4639',
+            assetName: '000de1404e4654202331383438',
+        };
+
+        const getPotentialRewardsInput: GetPotentialRewardsWithPendingInput = {
+            stakeProjectId: stakeProjectId,
+            nftStakeRewardWithPendingInputs: [stakeNft1, stakeNft2, stakeNft3],
+        };
+
+        const result = await queryPotentialRewardsWithPending(getPotentialRewardsInput);
+        return result;
+    } catch (error: any) {
+        console.log(error);
+    }
+};
+
 const getRemainingTokensFunction = async (event: any, stakeProject: any) => {
     event.preventDefault();
     try {
@@ -611,6 +648,39 @@ const getNFTDailyRewardsFunction = async (event: any, stakeProject: any) => {
         };
 
         const result = await queryDailyRewards(getPotentialRewardsInput);
+        return result;
+    } catch (error: any) {
+        console.log(error);
+    }
+};
+
+//This API call works the same as the one above, but it also returns the pending stake Utxos, aka the Utxos that are currently being staked
+const getNFTDailyRewardsWithPendingFunction = async (event: any, stakeProject: any) => {
+    event.preventDefault();
+    try {
+        const stakeProjectId = 'd51282e9-dacf-434d-b069-5c972e9d672d';
+
+        const stakeNft1: NFTDailyStakeRewardInput = {
+            policyId: '80fe5596d16d7c9e5255e46670e59d8644baf94d2a55ec9b382c4639',
+            assetName: '000de1404e4654202331383530',
+        };
+
+        const stakeNft2: NFTDailyStakeRewardInput = {
+            policyId: '80fe5596d16d7c9e5255e46670e59d8644baf94d2a55ec9b382c4639',
+            assetName: '000de1404e4654202331383330',
+        };
+
+        const stakeNft3: NFTDailyStakeRewardInput = {
+            policyId: '80fe5596d16d7c9e5255e46670e59d8644baf94d2a55ec9b382c4639',
+            assetName: '000de1404e4654202331383438',
+        };
+
+        const getPotentialRewardsInput: GetDailyRewardsWithPendingInput = {
+            stakeProjectId: stakeProjectId,
+            nftDailyStakeRewardWithPendingInputs: [stakeNft1, stakeNft2, stakeNft3],
+        };
+
+        const result = await queryDailyRewardsWithPending(getPotentialRewardsInput);
         return result;
     } catch (error: any) {
         console.log(error);

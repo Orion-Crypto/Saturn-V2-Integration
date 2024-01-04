@@ -34,7 +34,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
 
-export const StakeSettings = () => {
+const StakeSettings = () => {
     const [isStakingNFTs, setIsStakingNFTs] = useState(false);
     const [isUnstakingNFTs, setIsUnstakingNFTs] = useState(false);
     const [isClaimingNFTs, setIsClaimingNFTs] = useState(false);

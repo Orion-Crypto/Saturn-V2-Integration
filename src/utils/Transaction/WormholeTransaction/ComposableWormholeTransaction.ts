@@ -11,7 +11,7 @@ import { CreateWormholeTransactionPayload } from '@/types/Transactions/WormholeT
 import { SubmitWormholeTransactionInput } from '@/types/Transactions/WormholeTransaction/SubmitWormholeTransactionInput';
 import { SubmitWormholeTransactionPayload } from '@/types/Transactions/WormholeTransaction/SubmitWormholeTransactionPayload';
 import CardanoWallet from '@/utils/Cardano/wallet';
-import { SignMintingTransaction } from '@/utils/Transaction/GeneralTransactionUtils';
+import { SignTransaction } from '@/utils/Transaction/GeneralTransactionUtils';
 
 export interface ComposableWormholeTransactionProps {
     wormholeComponents?: NFTMintComponent[];
@@ -53,7 +53,7 @@ export const ComposableWormholeTransaction = async ({
             const transactionId: any = successTransaction?.transactionId;
             const hexTransaction: any = successTransaction?.hexTransaction;
 
-            const signedHexTx = await SignMintingTransaction(hexTransaction);
+            const signedHexTx = await SignTransaction(hexTransaction);
             if (!signedHexTx) {
                 return {
                     error: InvalidTransactionSignatureError,

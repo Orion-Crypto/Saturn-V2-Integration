@@ -13,7 +13,7 @@ import { SubmitNFTMintBurnUpdateTransactionPayload } from '@/types/Transactions/
 import { SuccessTransaction } from '@/types/Transactions/SuccessTransaction';
 import { TransactionResult } from '@/types/Transactions/TransactionResult';
 import CardanoWallet from '@/utils/Cardano/wallet';
-import { SignMintingTransaction } from '@/utils/Transaction/GeneralTransactionUtils';
+import { SignTransaction } from '@/utils/Transaction/GeneralTransactionUtils';
 
 export interface ComposableNFTMintBurnUpdateTransactionProps {
     nftMintComponents?: NFTMintComponent[];
@@ -56,7 +56,7 @@ export const ComposableNFTMintBurnUpdateTransaction = async ({
             const transactionId: any = successTransaction?.transactionId;
             const hexTransaction: any = successTransaction?.hexTransaction;
 
-            const signedHexTx = await SignMintingTransaction(hexTransaction);
+            const signedHexTx = await SignTransaction(hexTransaction);
             if (!signedHexTx) {
                 return {
                     error: InvalidTransactionSignatureError,

@@ -15,7 +15,7 @@ import { SubmitTokenMintBurnUpdateTransactionInput } from '@/types/Transactions/
 import { SubmitTokenMintBurnUpdateTransactionPayload } from '@/types/Transactions/TokenMintBurnUpdateTransaction/SubmitTokenMintBurnUpdateTransactionPayload';
 import { TransactionResult } from '@/types/Transactions/TransactionResult';
 import CardanoWallet from '@/utils/Cardano/wallet';
-import { SignMintingTransaction } from '@/utils/Transaction/GeneralTransactionUtils';
+import { SignTransaction } from '@/utils/Transaction/GeneralTransactionUtils';
 
 export interface ComposableTokenMintBurnUpdateTransactionProps {
     tokenMintComponents?: TokenMintComponent[];
@@ -53,7 +53,7 @@ export const ComposableTokenMintBurnUpdateTransaction = async ({
             const transactionId: any = successTransaction?.transactionId;
             const hexTransaction: any = successTransaction?.hexTransaction;
 
-            const signedHexTx = await SignMintingTransaction(hexTransaction);
+            const signedHexTx = await SignTransaction(hexTransaction);
             if (!signedHexTx) {
                 return {
                     error: InvalidTransactionSignatureError,

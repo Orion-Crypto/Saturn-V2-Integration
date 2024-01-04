@@ -13,15 +13,16 @@ export const TransactionInfoTab = (result: TransactionResult) => {
     }
 };
 
-export const SignTransaction = async (hexTransaction: any) => {
-    const tx = CardanoWallet.lucid?.fromTx(hexTransaction);
-    const signedTx = await tx?.sign().complete();
-    const signedHex = signedTx?.toString();
-    return signedHex;
-};
+// Old SignTransaction function. The code is simpler but contains Lucid bugs
+// export const SignTransaction = async (hexTransaction: any) => {
+//     const tx = CardanoWallet.lucid?.fromTx(hexTransaction);
+//     const signedTx = await tx?.sign().complete();
+//     const signedHex = signedTx?.toString();
+//     return signedHex;
+// };
 
-// We need a sign minting transaction because Lucid removes all redeemers with the same minted policy id
-export const SignMintingTransaction = async (hexTransaction: any) => {
+// We need to sign transactions like this because Lucid removes all redeemers with the same minted policy id and incorrectly sorts Smart Contract redeemers
+export const SignTransaction = async (hexTransaction: any) => {
     const { C, toHex } = await import('lucid-cardano');
 
     // Reconstruct and sign tx
